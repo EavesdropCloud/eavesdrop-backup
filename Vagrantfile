@@ -27,9 +27,9 @@ Vagrant.configure("2") do |config|
         frontendserver.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
         frontendserver.vm.network "private_network", ip: "192.168.56.12"
 
-        frontendserver.vm.synced_folder "./frontend", "/vagrant", owner: "vagrant", group: "vagrant", mount_options: ["dmode=555,fmode=444"]
+        frontendserver.vm.synced_folder "./frontend", "/vagrant", owner: "vagrant", group: "vagrant", mount_options: ["dmode=775,fmode=777"]
 
-        frontendserver.vm.provision "shell", path: "frontend/build-frontendserver-vm.sh"
+        frontendserver.vm.provision "shell", path: "build-frontendserver-vm.sh"
     end
 
     config.vm.define "dbserver" do |dbserver|
