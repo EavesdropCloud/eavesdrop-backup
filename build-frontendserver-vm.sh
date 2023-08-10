@@ -1,5 +1,5 @@
 apt update && apt upgrade
-curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - 
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - 
 apt install -y nodejs
 cat > /etc/systemd/system/nodeserver.service << EOF
 [Unit]
