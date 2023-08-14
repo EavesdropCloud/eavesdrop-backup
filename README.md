@@ -2,7 +2,7 @@
 
 ### 1. Clone the repo
 ```
-git clone https://github.com/EavesdropCloud/eavesdrop.git
+git clone https://github.com/EavesdropCloud/eavesdrop.git && \
 cd eavesdrop
 ```
 
