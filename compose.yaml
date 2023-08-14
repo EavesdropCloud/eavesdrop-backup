@@ -10,3 +10,13 @@ services:
       - /app/.next
     environment:
       - NEXT_WEBPACK_USEPOLLING=1
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - 5000:5000
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=1
