@@ -24,6 +24,7 @@ services:
       - app_network
     environment:
       - CHOKIDAR_USEPOLLING=1
+      - DB_URL=mongodb://devuser:devpassword@eavesdrop-mongo-1:27017/
     depends_on:
       - mongo
   mongo:
