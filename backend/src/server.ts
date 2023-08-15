@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 
+import apiRouter from './routers/apiRouter';
+
 const app = express();
 
 // Middleware
@@ -9,9 +11,7 @@ app.use(express.json());
 app.use(cors());
 
 // Routes
-app.get('/', (req, res) => {
-  res.send('Hello, World!');
-});
+app.use('/api', apiRouter);
 
 //Connect to database
 const db_url = process.env.DB_URL;
@@ -27,11 +27,8 @@ database.once('connected', () => {
   console.log('Database connected');
 })
 
-
-
 // Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-

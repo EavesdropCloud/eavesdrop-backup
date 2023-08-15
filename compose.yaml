@@ -30,7 +30,8 @@ services:
   mongo:
     image: mongo:latest
     volumes:
-      - /db:/data/db
+      - mongodb-data:/data/db
+      - ./db/mongo-init-scripts:/docker-entrypoint-initdb.d
     networks:
       - app_network
     environment:
@@ -53,3 +54,6 @@ services:
 networks:
   app_network:
     driver: bridge
+
+volumes:
+  mongodb-data:
