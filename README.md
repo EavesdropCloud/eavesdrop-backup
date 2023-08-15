@@ -11,6 +11,10 @@ cd eavesdrop
 docker compose up -d --build
 ```
 
-### (Optional) VS Code Configuration
+### 3. (Recommended) VS Code Configuration
 
 Install the remote development extension pack to edit source code using container environment and dependencies.
+
+## Development
+
+Source code is mounted at /app within the containers.
