@@ -1,7 +1,7 @@
 import express from 'express';
 
-import songRouter from './songRouter';
-import fileRouter from './fileRouter';
+import songRouter from './songRouter.js';
+import fileRouter from './fileRouter.js';
 
 const router = express.Router();
 

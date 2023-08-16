@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 
-import apiRouter from './routers/apiRouter';
+import apiRouter from './routers/apiRouter.js';
 
 const app = express();
 

@@ -1,6 +1,6 @@
 import { Schema, model, connect } from 'mongoose';
 
-interface File {
+export interface File {
     originalName: string;
     storedName: string;
 }
@@ -12,4 +12,4 @@ const fileSchema = new Schema<File>({
 
 const FileModel = model<File>("File", fileSchema);
 
-module.exports = FileModel;
+export default FileModel;
