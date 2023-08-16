@@ -23,4 +23,15 @@ export const getSongById = async (req: Request, res: Response) => {
         console.log(error);
         res.status(500).json({ error: 'An error occured' });
     }
-}
+};
+
+export const deleteSongById = async (req: Request, res: Response) => {
+    try {
+        const songId = req.params.id;
+        await SongModel.deleteOne({ _id: songId });
+        res.status(200).json("Deleted");
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'An error occured' });
+    }
+};
