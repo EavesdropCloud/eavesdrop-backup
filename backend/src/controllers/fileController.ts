@@ -6,7 +6,8 @@ import FileModel, { File } from '../models/FileModel.js';
 import SongModel, { Song } from '../models/SongModel.js';
 
 export const uploadFile = async (req: Request, res: Response) => {
-    const metadata = await parseFile(req.file.destination + "/" + req.file.filename)
+    const filePath = path.join(req.file.destination, req.file.filename)
+    const metadata = await parseFile(filePath);
 
     const file: File = await FileModel.create({
         originalName: req.file.originalname,
