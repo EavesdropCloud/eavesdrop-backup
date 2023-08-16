@@ -7,6 +7,20 @@ export const getAllSongs = async (req: Request, res: Response) => {
         res.status(200).json(songList);
     } catch (error) {
         console.log(error);
-        res.status(500).json({ error: 'An error occured'})
+        res.status(500).json({ error: 'An error occured' });
     }
 };
+
+export const getSongById = async (req: Request, res: Response) => {
+    try {
+        const songId = req.params.id;
+        const song: Song | null = await SongModel.findById(songId);
+        if (!song) {
+            res.status(404).json({ error: "Song not found" });
+        }
+        res.status(200).json(song);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'An error occured' });
+    }
+}
