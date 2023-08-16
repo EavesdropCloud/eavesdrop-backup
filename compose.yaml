@@ -12,6 +12,7 @@ services:
       - app_network
     environment:
       - NEXT_WEBPACK_USEPOLLING=1
+
   backend:
     build:
       context: ./backend
@@ -27,6 +28,7 @@ services:
       - DB_URL=mongodb://devuser:devpassword@eavesdrop-mongo-1:27017/
     depends_on:
       - mongo
+
   mongo:
     image: mongo:latest
     volumes:
@@ -37,6 +39,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: devuser
       MONGO_INITDB_ROOT_PASSWORD: devpassword
+
   mongo-express:
     image: mongo-express:latest
     restart: always
