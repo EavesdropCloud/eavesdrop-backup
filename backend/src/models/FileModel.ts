@@ -1,7 +1,7 @@
 import mongoose, { Schema, model, Types } from 'mongoose';
 
 export enum FileType {
-    Song,
+    Song = "song",
 }
 
 export interface File {
@@ -10,13 +10,13 @@ export interface File {
     location: string;
     fileType: FileType;
     metadata?: Types.ObjectId;
-}
+};
 
 const fileSchema = new Schema<File>({
     originalName: {type: String, required: true},
     storedName: {type: String, required: true},
     location: {type: String, required: true},
-    fileType: {type: Number, enum: Object.values(FileType), required: true},
+    fileType: {type: String, enum: Object.values(FileType), required: true},
     metadata: {type: mongoose.Schema.Types.ObjectId, required: false}
 });
 
