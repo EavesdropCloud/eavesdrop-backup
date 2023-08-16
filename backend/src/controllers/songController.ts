@@ -16,7 +16,7 @@ export const getSongById = async (req: Request, res: Response) => {
         const songId = req.params.id;
         const song: Song | null = await SongModel.findById(songId);
         if (!song) {
-            res.status(404).json({ error: "Song not found" });
+            return res.status(404).json({ error: "Song not found" });
         }
         res.status(200).json(song);
     } catch (error) {
