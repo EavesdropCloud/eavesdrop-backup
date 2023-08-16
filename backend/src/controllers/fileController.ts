@@ -9,7 +9,8 @@ export const uploadFile = async (req: Request, res: Response) => {
 
     const file: File = await FileModel.create({
         originalName: req.file.originalname,
-        storedName: req.file.filename
+        storedName: req.file.filename,
+        location: req.file.destination
     });
 
     const song: Song = await SongModel.create({
