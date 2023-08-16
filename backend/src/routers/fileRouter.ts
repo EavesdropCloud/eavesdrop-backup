@@ -1,10 +1,10 @@
 import express from 'express';
 
+import Upload from '../config/upload.js'
+import { uploadFile } from '../controllers/fileController.js';
+
 const router = express.Router();
 
-//TODO: Setup file uploading/downloading routes
-router.get('/', async (req, res) => {
-    res.send("Hello World!");
-})
+router.post('/upload', Upload.single('file'), uploadFile);
 
-export default router
+export default router;
