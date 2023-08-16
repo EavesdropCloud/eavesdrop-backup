@@ -1,10 +1,13 @@
 import { Request, Response } from 'express';
 import { parseFile } from 'music-metadata';
 import path from 'path';
+import fs from 'fs';
+import { Types } from 'mongoose';
 
 import FileModel, { File, FileType } from '../models/FileModel.js';
 import SongModel, { Song } from '../models/SongModel.js';
-import { Types } from 'mongoose';
+import { getModelByFileType } from '../utils/modelUtils.js';
+
 
 export const uploadFile = async (req: Request, res: Response) => {
     const filePath = path.join(req.file.destination, req.file.filename);
@@ -41,3 +44,22 @@ export const downloadFile = async (req: Request, res: Response) => {
     const filePath = path.join(file.location, file.storedName);
     res.download(filePath, file.originalName);
 };
+
+export const deleteFileById = async (req: Request, res: Response) => {
+    const fileId = req.params.id;
+    const file: File | null = await FileModel.findByIdAndDelete(fileId);
+
+    if (!file) {
+        return res.status(404).json({ error: "File not found "});
+    }
+
+    if (file.metadata) {
+        await getModelByFileType(file.fileType).findByIdAndDelete(file.metadata);
+    }
+
+    fs.rm(path.join(file.location, file.storedName), (error) => {
+        console.log(error);
+    })
+
+    res.status(200).json("Deleted");
+}
