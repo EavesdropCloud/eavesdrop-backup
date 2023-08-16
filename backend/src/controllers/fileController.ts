@@ -2,25 +2,32 @@ import { Request, Response } from 'express';
 import { parseFile } from 'music-metadata';
 import path from 'path';
 
-import FileModel, { File } from '../models/FileModel.js';
+import FileModel, { File, FileType } from '../models/FileModel.js';
 import SongModel, { Song } from '../models/SongModel.js';
+import { Types } from 'mongoose';
 
 export const uploadFile = async (req: Request, res: Response) => {
-    const filePath = path.join(req.file.destination, req.file.filename)
+    const filePath = path.join(req.file.destination, req.file.filename);
     const metadata = await parseFile(filePath);
+
+    var songId: Types.ObjectId;
+    const song: Song = await SongModel.create({
+        title: metadata.common.title || "Unknown Artist",
+        artist: metadata.common.artist || "Unkown Title"
+    }).then((createdSong) => {
+        songId = createdSong._id;
+        return createdSong;
+    });
 
     const file: File = await FileModel.create({
         originalName: req.file.originalname,
         storedName: req.file.filename,
-        location: req.file.destination
+        location: req.file.destination,
+        fileType: FileType.Song,
+        metadata: songId
     });
 
-    const song: Song = await SongModel.create({
-        title: metadata.common.title || "Unknown Artist",
-        artist: metadata.common.artist || "Unkown Title"
-    })
-
-    res.status(201).json({ file, song })
+    res.status(201).json({ file, song });
 };
 
 export const downloadFile = async (req: Request, res: Response) => {
