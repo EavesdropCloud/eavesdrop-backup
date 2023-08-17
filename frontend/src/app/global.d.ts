@@ -1,11 +1,12 @@
 
 declare global {
-    interface Song {
+    interface Metadata {
       id: number
       title: string
       artist: string
-      length: number
-      genre: string
+      bpm?: number
+      length?: number
+      genre?: string
     }
   }
 
