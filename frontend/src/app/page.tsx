@@ -1,12 +1,33 @@
 import Link from 'next/link'
 
-export default function Home() {
+interface SongModel {
+  title: string,
+  artist: string
+}
+
+export default async function Home() {
+  const songs = await getSongs()
   return (
     <main>
       <h1>Homepage</h1>
-      <Link href="/viewer">Go to viewer page</Link>
-    <br />
-      <Link href="/">Go to this page</Link>
+      <ul>
+        {songs.map((song: SongModel) => (
+          <li className="mb-6">
+            <h2 className="text-xl font-semibold">{song.title}</h2>
+            <p className="text-gray-600">{song.artist}</p>
+          </li>
+        ))}
+      </ul>
     </main>
   )
+}
+
+async function getSongs() {
+  const res = await fetch('http://eavesdrop-backend-1:5000/api/songs')
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch songs')
+  }
+
+  return res.json()
 }
