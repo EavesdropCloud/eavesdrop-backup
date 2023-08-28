@@ -4,33 +4,25 @@ import path from 'path';
 import fs from 'fs';
 import { Types } from 'mongoose';
 
-import FileModel, { File, FileType } from '../models/FileModel.js';
-import SongModel, { Song } from '../models/SongModel.js';
-import { getModelByFileType } from '../utils/modelUtils.js';
+import FileModel, { File } from '../models/files/FileModel.js';
+import SongFileModel, { Song } from '../models/files/SongFileModel.js';
 
 
-export const uploadFile = async (req: Request, res: Response) => {
+export const uploadSongFile = async (req: Request, res: Response) => {
     const filePath = path.join(req.file.destination, req.file.filename);
     const metadata = await parseFile(filePath);
 
-    var songId: Types.ObjectId;
-    const song: Song = await SongModel.create({
-        title: metadata.common.title || "Unknown Artist",
-        artist: metadata.common.artist || "Unkown Title"
-    }).then((createdSong) => {
-        songId = createdSong._id;
-        return createdSong;
-    });
-
-    const file: File = await FileModel.create({
+    const song: Song = await SongFileModel.create({
+        metadata: {
+            title: metadata.common.title || "Unknown Artist",
+            artist: metadata.common.artist || "Unkown Title"
+        },
         originalName: req.file.originalname,
         storedName: req.file.filename,
         location: req.file.destination,
-        fileType: FileType.Song,
-        metadata: songId
     });
 
-    res.status(201).json({ file, song });
+    res.status(201).json({ song });
 };
 
 export const downloadFile = async (req: Request, res: Response) => {
@@ -51,10 +43,6 @@ export const deleteFileById = async (req: Request, res: Response) => {
 
     if (!file) {
         return res.status(404).json({ error: "File not found "});
-    }
-
-    if (file.metadata) {
-        await getModelByFileType(file.fileType).findByIdAndDelete(file.metadata);
     }
 
     fs.rm(path.join(file.location, file.storedName), (error) => {

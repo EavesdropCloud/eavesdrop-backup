@@ -1,10 +1,10 @@
 import express from 'express';
-import { deleteSongById, getAllSongs, getSongById } from '../controllers/songController.js';
+import {  getAllSongs } from '../controllers/songController.js';
 
 const router = express.Router();
 
 router.get('/', getAllSongs);
-router.get('/:id', getSongById);
-router.delete('/:id', deleteSongById);
+//router.get('/:id', getSongById);
+//router.delete('/:id', deleteSongById);
 
 export default router;
