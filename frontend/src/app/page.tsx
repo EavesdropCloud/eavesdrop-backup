@@ -1,16 +1,13 @@
 import Link from 'next/link'
-
-interface SongModel {
-  title: string,
-  artist: string
-}
+import Navbar from './_components/Navigation'
 
 export default async function Home() {
   const songs = await getSongs()
   return (
     <main>
-      <h1>Homepage</h1>
-      <ul>
+      <Navbar />
+      <h1 className="text-xl text-center font-semibold">Song Library</h1>
+      <ul className="flex flex-row justify-around">
         {songs.map((song: SongModel) => (
           <li className="mb-6">
             <h2 className="text-xl font-semibold">{song.title}</h2>
