@@ -1,6 +1,7 @@
 import mongoose, { Schema, model, Types } from 'mongoose';
 
 export interface File {
+    _id: Types.ObjectId;
     originalName: string;
     storedName: string;
     location: string;

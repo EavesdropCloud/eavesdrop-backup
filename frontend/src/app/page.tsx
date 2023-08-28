@@ -1,6 +1,18 @@
 import Link from 'next/link'
 import Navbar from './_components/Navigation'
 
+interface File {
+  _id: String,
+  originalName: string
+}
+
+interface SongModel extends File {
+  metadata: {
+    title: string,
+    artist: string
+  }
+}
+
 export default async function Home() {
   const songs = await getSongs()
   return (
@@ -10,8 +22,9 @@ export default async function Home() {
       <ul className="flex flex-row justify-around">
         {songs.map((song: SongModel) => (
           <li className="mb-6">
-            <h2 className="text-xl font-semibold">{song.title}</h2>
-            <p className="text-gray-600">{song.artist}</p>
+            <h2 className="text-xl font-semibold">{song.metadata.title}</h2>
+            <p className="text-gray-600">{song.metadata.artist}</p>
+            <a href={`/api/download/${song._id}`}>Download</a>
           </li>
         ))}
       </ul>
