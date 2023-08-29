@@ -16,7 +16,7 @@ export default async function Home() {
 }
 
 async function getSongs() {
-  const res = await fetch('http://eavesdrop-backend-1:5000/api/songs', {cache: 'no-store'})
+  const res = await fetch(process.env.BACKEND_API_BASE + "/songs", {cache: 'no-store'})
 
   if (!res.ok) {
     throw new Error('Failed to fetch songs')
