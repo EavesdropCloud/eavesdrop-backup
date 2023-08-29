@@ -1,7 +1,9 @@
-import Navbar from '@/components/Navigation'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+
+import Navbar from '@/components/Navbar'
+import Sidebar from '@/components/Sidebar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,7 +21,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Navbar />
-        {children}
+        <div className="relative min-h-screen flex">
+          <Sidebar />
+          <div className="flex-1">{children}</div>
+          
+        </div>
       </body>
     </html>
   )

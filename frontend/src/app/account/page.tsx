@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Navbar from '../../components/Navigation'
+import Navbar from '../../components/Navbar'
 import React from 'react'
 
 
