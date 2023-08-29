@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Navbar from '../_components/Navigation'
+import Navbar from '../../components/Navigation'
 import React from 'react'
 
 interface SongModel {    
