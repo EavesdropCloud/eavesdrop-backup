@@ -1,16 +1,20 @@
-import Song from '@/components/Song'
-import { SongModel } from '@/types'
+import SongRow from '@/components/SongRow'
+import {  SongProps } from '@/types'
 
 export default async function Home() {
   const songs = await getSongs()
   return (
     <main>
       <h1 className="text-xl text-center font-semibold">Song Library</h1>
-      <ul className="flex flex-row justify-around">
-        {songs.map((song: SongModel) => (
-          <Song song={song} />
+      <div className="grid grid-cols-[40%,40%,10%] gap-4">
+        <div>Title</div>
+        <div>Artist</div>
+        <div></div>
+
+        {songs.map((song: SongProps) => (
+          <SongRow song={song} />
         ))}
-      </ul>
+      </div>
     </main>
   )
 }
