@@ -1,20 +1,29 @@
-import Link from 'next/link'
-import Navbar from '../../components/Navbar'
-import React from 'react'
+'use client'
 
-interface SongModel {    
-    title: string
-    artist: string
+import React, {useCallback} from 'react'
+import { useDropzone } from 'react-dropzone'
+
+import Dropzone from '@/components/Dropzone'
+  
+const Upload = () => {
+  const handleUpload = async (files: File[]) => {
+    const file = files[0];
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const res = await fetch('/api/files/upload', {
+        method: 'POST',
+        body: formData
+      });
+    } catch (error) {
+      console.error('Error uploading files', error);
+    }
   }
 
-export default async function Home() {
   return (
-    <main>
-      <Navbar />
-      <h1 className="text-xl text-center font-semibold mt-10">Upload yo songs</h1>
-      <div className="m-50 flex justify-center border-2 border-white">
-        <button className="m-10">Upload</button>
-      </div>
-    </main>
+    <Dropzone onUpload={handleUpload} />
   )
 }
+
+export default Upload;

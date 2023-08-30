@@ -9,10 +9,10 @@ export default async function Home() {
       <div className="grid grid-cols-[40%,40%,10%] gap-4">
         <div>Title</div>
         <div>Artist</div>
-        <div></div>
+        <div>Upload</div>
 
-        {songs.map((song: SongProps) => (
-          <SongRow song={song} />
+        {songs.map((song: SongProps, key: any) => (
+          <SongRow song={song} key={key}/>
         ))}
       </div>
     </main>
