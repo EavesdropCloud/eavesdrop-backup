@@ -11,11 +11,6 @@ const nextConfig = {
         }
         return config
     },
-}
-
-module.exports = nextConfig
-
-module.exports = {
     async rewrites() {
         return [
             {
@@ -23,5 +18,9 @@ module.exports = {
                 destination: 'http://eavesdrop-backend-1:5000/api/:path*'
             }
         ]
-    }
+    },
 }
+
+module.exports = nextConfig
+
+
