@@ -12,7 +12,9 @@ interface SongRowProps {
 
 const SongRow = ({song}: SongRowProps, key: React.Key) => {
     const handleDownload = async () => {
-        await fetch('/api/files/download/' + song._id);
+        if (typeof window !== 'undefined') {
+            window.location.href = '/api/files/download/' + song._id;
+        }
     }
 
     return (
