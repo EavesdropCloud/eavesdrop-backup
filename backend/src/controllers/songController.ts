@@ -26,3 +26,17 @@ export const updateSongById = async (req: Request, res: Response) => {
         res.status(500).json({ error: 'An error occured' });
     }
 }
+
+export const getSongById = async (req: Request, res: Response) => {
+    try {
+        const songId = req.params.id;
+        const song: Song | null = await SongModel.findById(songId);
+        if (song === null) {
+            return res.status(404).json({error: "Song not found."});
+        }
+        res.status(200).json(song);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occured' });
+    }
+}
