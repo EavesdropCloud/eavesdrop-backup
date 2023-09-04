@@ -18,7 +18,7 @@ cp backend-test-data/* backend-uploads
 
 Create a .env.local file within the frontend directory. An example .env.local file is provided:
 ```
-cp frontend/env.local.example frontend/env.local
+cp frontend/.env.local.example frontend/.env.local
 ```
 
 ### 4. Start the development containers
