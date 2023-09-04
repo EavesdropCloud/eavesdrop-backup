@@ -15,8 +15,11 @@ const config: Config = {
       //  },
       colors: {
         'midnight': {
+          50: '#0D050F',
           100: '#170a1c',
+          150: '#220F29',
           200: '#25102D',
+          300: '#31153C',
         },
         'darkpurple': '#391833',
         'lilac': '#BE95C4',
