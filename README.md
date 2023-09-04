@@ -1,3 +1,14 @@
+# Eavesdrop Cloud
+
+Eavesdrop is a web application developed with DJs in mind - store your music files and access them from anywhere.* \
+There are four containers which will be deployed upon build - frontend, backend, database, and MongoDB. \
+The frontend is developed using React and Next.js in Typescript. Users can upload their files, view them, and download them. \
+The backend is developed using Express. It handles the files, REST API calls, and allows for CRUD operations.  \
+The database container uses MongoDB to store and manage the user's files. \
+The MongoDB container hosts the MongoDB server on http://localhost:8081/.
+
+**cloud based storage not implemented yet* 
+
 ## Getting started
 
 ### 1. Clone the repo
@@ -31,6 +42,14 @@ cp frontend/.env.local.example frontend/.env.local
 docker compose up -d --build
 ```
 
+<<<<<<< Updated upstream
+=======
+### 4. Visit the web application
+
+Navigate to http://localhost:3000/ to view the frontend application.
+
+
+>>>>>>> Stashed changes
 ### 5. (Recommended) VS Code Configuration
 
 Install the remote development extension pack to edit source code using container environment and dependencies.
