@@ -4,6 +4,10 @@ import React from "react";
 import { SongProps } from "@/types";
 import Link from "next/link";
 
+import DownloadIcon from "./icons/DownloadIcon";
+import EditIcon from "./icons/EditIcon";
+import DeleteIcon from "./icons/DeleteIcon";
+
 interface SongRowProps {
     song: SongProps;
 }
@@ -39,19 +43,17 @@ const SongRow = ({song}: SongRowProps, key: React.Key) => {
             <div>{song.metadata.artist}</div>
             <div>
 
-            <button onClick={ handleDownload }>
-                <img src="icons/download.svg" alt="Download" 
-                    className="h-6 w-6 text-gray-500"/>
-            </button>
+                <button onClick={ handleDownload }>
+                    <DownloadIcon className="w-6 h-6 text-powder" />
+                </button>
 
-            <button onClick={ handleEdit }>
-                <img src="icons/edit.svg" alt="Edit" 
-                            className="ml-3 h-6 w-6 text-gray-500"/>
-            </button>
+                <button className="fill-white" onClick={ handleEdit }>
+                    <EditIcon className="ml-3 w-6 h-6 text-powder" />
+                </button>
 
-            <button onClick={ handleSubmit }>
-                <img src="icons/trash.svg" alt="Delete" className="ml-3 h-6 w-6 text-gray-500"/>
-            </button>
+                <button onClick={ handleSubmit }>
+                    <DeleteIcon className="ml-3 w-6 h-6 text-powder" />
+                </button>
 
             </div>
         </>
