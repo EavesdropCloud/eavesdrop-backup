@@ -1,6 +1,8 @@
-import React from "react";
+import React, { FormEvent } from "react";
 
 import { SongProps } from "@/types";
+import Form from "@/components/Form";
+import { json } from "stream/consumers";
 
 
 
@@ -12,9 +14,10 @@ const getSong = async (id: string) => {
 
 const Page = async ({ params }: { params: { id: string }}) => {
     const song: SongProps = await getSong(params.id);
+
     return (
         <main>
-            <p>{song._id}</p>
+            <Form song={song}></Form>
         </main>
     );
 }
