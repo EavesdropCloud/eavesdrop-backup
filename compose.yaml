@@ -21,7 +21,7 @@ services:
     volumes:
       - ./backend:/app
       - /app/node_modules
-      - backend-uploads:/uploads
+      - ./backend-uploads:/uploads
     networks:
       - app_network
     environment:
@@ -61,4 +61,3 @@ networks:
 
 volumes:
   mongodb-data:
-  backend-uploads:

@@ -99,3 +99,4 @@ Cargo.lock
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/rust,react,vagrant,visualstudiocode,nextjs
+backend-uploads/
