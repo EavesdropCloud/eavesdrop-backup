@@ -5,14 +5,13 @@ import React, { useState } from 'react';
 
 const links = [
   {href: '/', label: 'Home'},
-  {href: '/404', label: 'About'},
-  {href: '/404', label: 'Services'},
-  {href: '/404', label: 'Contact'}
+  {href: '/about', label: 'About'},
+  {href: '/account', label: 'Account'},
 ]
 
 export default function Navbar() {
   return (
-    <nav className="bg-blue-500 p-4">
+    <nav className="bg-midnight p-4">
       <div className="max-w-5xl mx-auto flex justify-between items-center">
         <div className="text-white font-bold text-lg">Eavesdrop</div>
         <div className="md:flex md:items-center">
