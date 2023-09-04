@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 
 const Sidebar = () => (
-    <div className="bg-blue-800 text-blue-100 w-64">
+    <div className="bg-midnight-100 text-blue-100 w-64">
         <div>
             <Link href="/">Library</Link>
         </div>
