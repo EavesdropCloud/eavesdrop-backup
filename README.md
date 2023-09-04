@@ -5,6 +5,11 @@
 git clone https://github.com/EavesdropCloud/eavesdrop.git && \
 cd eavesdrop
 ```
+or
+```
+git clone git@github.com:EavesdropCloud/eavesdrop.git && \
+cd eavesdrop
+```
 
 ### 2. Move test data
 Copy the test data to a new folder at the root of the project named backend-uploads
