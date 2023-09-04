@@ -1,8 +1,9 @@
 'use client'
 
 import React from "react";
-import { SongProps } from "@/types";
+import { SongProps } from "../../types";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 interface SongRowProps {
     song: SongProps;
@@ -11,20 +12,20 @@ interface SongRowProps {
 
 
 const SongRow = ({song}: SongRowProps, key: React.Key) => {
+    const router = useRouter();
 
     const handleDownload = async () => {
         if (typeof window !== 'undefined') {
             window.location.href = '/api/files/download/' + song._id;
         }
+        router.reload();
     }
 
     const handleSubmit = async () => {
         const res = await fetch("/api/files/" + song._id, {
             method: "DELETE"
         })
-        if (typeof window !== 'undefined') {
-            window.location.href = '/';
-        }
+        router.reload();
     }
 
     const handleEdit = async () => {
