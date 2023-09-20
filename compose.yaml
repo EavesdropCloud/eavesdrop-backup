@@ -1,11 +1,11 @@
 services:
   frontend:
     build:
-      context: ./frontend
+      context: ./apps/frontend
     ports:
       - 3000:3000
     volumes:
-      - ./frontend:/app
+      - ./apps/frontend:/app
       - /app/node_modules
       - /app/.next
     networks:
@@ -15,17 +15,15 @@ services:
 
   backend:
     build:
-      context: ./backend
+      context: .
+      dockerfile: ./apps/backend/Dockerfile
     ports:
       - 5000:5000
     volumes:
-      - ./backend:/app
-      - /app/node_modules
-      - ./backend-uploads:/uploads
+      - backend-uploads:/uploads
     networks:
       - app_network
     environment:
-      - CHOKIDAR_USEPOLLING=1
       - DB_URL=mongodb://devuser:devpassword@eavesdrop-mongo-1:27017/
     depends_on:
       - mongo
@@ -61,3 +59,4 @@ networks:
 
 volumes:
   mongodb-data:
+  backend-uploads:
