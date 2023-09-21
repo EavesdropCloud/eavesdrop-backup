@@ -1,0 +1,7 @@
+{
+    "name": "Eavesdrop",
+    "dockerComposeFile": "./compose.yaml",
+    "service": "eavesdrop",
+    "workspaceFolder": "/workspace/eavesdrop"
+    //"shutdownAction": "stopCompose"
+}
