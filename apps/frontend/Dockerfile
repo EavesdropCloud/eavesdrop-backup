@@ -40,7 +40,6 @@ RUN npx turbo run build --filter=frontend...
 
 FROM base AS runner
 WORKDIR /app
-RUN apk add curl
 
 # Don't run production as root
 RUN addgroup --system --gid 1001 nodejs
