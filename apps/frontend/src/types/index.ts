@@ -9,3 +9,7 @@ export interface SongProps extends FileProps {
       artist: string
     }
 }
+
+export interface IconProps {
+  className: string
+}

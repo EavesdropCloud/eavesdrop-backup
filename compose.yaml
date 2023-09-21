@@ -1,17 +1,16 @@
 services:
   frontend:
     build:
-      context: ./apps/frontend
+      context: .
+      dockerfile: ./apps/frontend/Dockerfile
     ports:
       - 3000:3000
-    volumes:
-      - ./apps/frontend:/app
-      - /app/node_modules
-      - /app/.next
     networks:
       - app_network
     environment:
       - NEXT_WEBPACK_USEPOLLING=1
+    depends_on:
+      - backend
 
   backend:
     build:
@@ -55,7 +54,7 @@ services:
 
 networks:
   app_network:
-    driver: bridge
+    external: true
 
 volumes:
   mongodb-data:

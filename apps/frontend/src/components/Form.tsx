@@ -3,7 +3,13 @@
 import React from "react";
 import { FormEvent } from "react";
 
-const Form = ({ song }) => {
+import { SongProps } from "../types";
+
+interface SongFormProps {
+    song: SongProps
+}
+
+const Form = ({ song }: SongFormProps) => {
     const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
@@ -25,11 +31,11 @@ const Form = ({ song }) => {
             <h1 className="text-2xl text-left font-semibold pt-10 px-20">Edit song details</h1>
             <div className="flex flex-col">
                 <div className="my-5 mx-20">
-                    <label className="block font-bold" for="song-title">Title</label>
+                    <label className="block font-bold" htmlFor="song-title">Title</label>
                     <input className="bg-midnight-100" type="text" name="title" id="song-title"defaultValue={song.metadata.title} required/>
                 </div>
                 <div className="mb-5 mx-20">
-                    <label className="block font-bold" for="artist-name">Artist</label>
+                    <label className="block font-bold" htmlFor="artist-name">Artist</label>
                     <input className="bg-midnight-100" type="text" name="artist" id="artist-name" defaultValue={song.metadata.artist} required/>
                 </div>
                 <div className="mb-5 mx-20">
