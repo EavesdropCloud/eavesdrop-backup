@@ -2,6 +2,7 @@
     "name": "Eavesdrop",
     "dockerComposeFile": "./compose.yaml",
     "service": "eavesdrop",
-    "workspaceFolder": "/workspace/eavesdrop"
-    //"shutdownAction": "stopCompose"
+    "workspaceFolder": "/workspace/eavesdrop",
+    "shutdownAction": "stopCompose",
+    "postCreateCommand": "npm install; npm install turbo --global; npx next telemetry disable"
 }

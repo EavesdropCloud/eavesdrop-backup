@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
     curl \
     git \
     ca-certificates \
-    gnupg
+    gnupg 
 
 #install node 18
 RUN mkdir -p /etc/apt/keyrings

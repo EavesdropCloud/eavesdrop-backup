@@ -13,12 +13,14 @@ services:
     depends_on:
       - mongo
     command: /bin/bash -c "while sleep 1000; do :; done" #keep container alive
+    environment:
+      - DB_URL=mongodb://devuser:devpassword@eavesdrop_devcontainer-mongo-1:27017/
   
   mongo:
     image: mongo:latest
     volumes:
       - mongodb-data:/data/db
-      - ./db/mongo-init-scripts:/docker-entrypoint-initdb.d
+      - ../db/mongo-init-scripts:/docker-entrypoint-initdb.d
     networks:
       - internal
     environment:
