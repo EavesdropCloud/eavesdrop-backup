@@ -7,8 +7,8 @@ services:
       - ../:/workspace/eavesdrop
       - /workspace/eavesdrop/node_modules
     ports:
-      - 3000:3000
-      - 5000:5000
+      - 3030:3000
+      - 5050:5000
     networks:
       - internal
     depends_on:
