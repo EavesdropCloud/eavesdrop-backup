@@ -44,15 +44,15 @@ const SongRow = ({song}: SongRowProps, key: React.Key) => {
             <div>
 
                 <button onClick={ handleDownload }>
-                    <DownloadIcon className="w-6 h-6 text-powder" />
+                    <DownloadIcon className="w-6 h-6" />
                 </button>
 
-                <button className="fill-white" onClick={ handleEdit }>
-                    <EditIcon className="ml-3 w-6 h-6 text-powder" />
+                <button onClick={ handleEdit }>
+                    <EditIcon className="ml-3 w-6 h-6" />
                 </button>
 
                 <button onClick={ handleSubmit }>
-                    <DeleteIcon className="ml-3 w-6 h-6 text-powder" />
+                    <DeleteIcon className="ml-3 w-6 h-6" />
                 </button>
 
             </div>
