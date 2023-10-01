@@ -1,8 +1,8 @@
 services:
   eavesdrop:
     build:
-      context: ../
-      dockerfile: .devcontainer/Dockerfile
+      context: .
+      dockerfile: Dockerfile
     volumes:
       - ../:/workspace/eavesdrop
       - /workspace/eavesdrop/node_modules
