@@ -1,10 +1,10 @@
 services:
   eavesdrop:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ../
+      dockerfile: .devcontainer/Dockerfile
     volumes:
-      - ..:/workspace/eavesdrop
+      - source-files:/workspace/eavesdrop
     ports:
       - 3000:3000
       - 5000:5000
@@ -48,3 +48,4 @@ networks:
 volumes:
   mongodb-data:
   backend-uploads:
+  source-files:
