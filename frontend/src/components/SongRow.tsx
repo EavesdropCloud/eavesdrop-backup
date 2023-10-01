@@ -38,25 +38,21 @@ const SongRow = ({song}: SongRowProps, key: React.Key) => {
     }
 
     return (
-        <>
-            <div>{song.metadata.title}</div>
-            <div>{song.metadata.artist}</div>
-            <div>
-
+        <tr className="group transition duration-300 ease-in-out">
+            <td className="group-hover:bg-raisin-200 transition duration-300 ease-in-out p-3 text-left">{song.metadata.title}</td>
+            <td className="group-hover:bg-raisin-200 transition duration-300 ease-in-out p-3 text-left">{song.metadata.artist}</td>
+            <td className="group-hover:bg-raisin-200 transition duration-300 ease-in-out p-3 text-left">
                 <button onClick={ handleDownload }>
                     <DownloadIcon className="w-6 h-6" />
                 </button>
-
                 <button onClick={ handleEdit }>
                     <EditIcon className="ml-3 w-6 h-6" />
                 </button>
-
                 <button onClick={ handleSubmit }>
                     <DeleteIcon className="ml-3 w-6 h-6" />
                 </button>
-
-            </div>
-        </>
+            </td>
+        </tr>
     );
 };
 
