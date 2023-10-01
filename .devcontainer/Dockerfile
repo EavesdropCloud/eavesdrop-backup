@@ -8,9 +8,13 @@ SHELL ["/bin/bash", "-exc"]
 
 RUN apt-get update && apt-get install -y \
     curl \
-    git \
     ca-certificates \
-    gnupg 
+    gnupg \
+    software-properties-common
+
+RUN add-apt-repository ppa:git-core/ppa
+
+RUN apt-get update && apt-get install -y git
 
 #install node 18
 RUN mkdir -p /etc/apt/keyrings
