@@ -14,6 +14,14 @@ const config: Config = {
       //      'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       //  },
       colors: {
+        'raisin': {
+          50: '#1E1E1F',
+          100: '#28282A',
+          200: '#323234',
+          800: '#A1A1A5',
+          900: '#CBCBCD',
+          950: '#E0E0E1',
+        },
         'midnight': {
           50: '#0D050F',
           100: '#170a1c',
@@ -22,8 +30,9 @@ const config: Config = {
           300: '#31153C',
         },
         'darkpurple': '#391833',
-        'lilac': '#BE95C4',
-        'lightpink': '#E0B1CB',
+        'lilac': '#D0C4DF',
+        'lightpink': '#DCABDF',
+        'wisteria': '#C792DF',
         'powder': '#F5F0F1',
       },
      },
