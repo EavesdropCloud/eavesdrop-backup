@@ -20,11 +20,12 @@ export default async function Home() {
 }
 
 async function getSongs() {
-  const res = await fetch(process.env.BACKEND_API_BASE + "/songs", {cache: 'no-store'})
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch songs')
+  try {
+    const res = await fetch(process.env.BACKEND_API_BASE + "/songs", {cache: 'no-store'});
+    const songs = await res.json();
+    return songs;
+  } catch (err) {
+    console.error(err);
+    return [];
   }
-
-  return res.json()
 }

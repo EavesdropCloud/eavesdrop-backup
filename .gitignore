@@ -30,6 +30,9 @@ yarn-error.log*
 # local env files
 .env*.local
 
+# production env files
+.env.production
+
 # vercel
 .vercel
 
@@ -100,3 +103,5 @@ Cargo.lock
 
 # End of https://www.toptal.com/developers/gitignore/api/rust,react,vagrant,visualstudiocode,nextjs
 backend-uploads/
+
+cache/
