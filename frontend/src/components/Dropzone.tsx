@@ -13,7 +13,7 @@ const Dropzone = ({ onUpload }) => {
     return (
         <div className="pt-20" {...getRootProps()}>
             <input {...getInputProps()} />
-            <p className="text-center"> Drag and drop files here, or click to select files.</p>
+            <p className="text-lg font-bold text-center"> Drag and drop files here, or click to select files.</p>
         </div>
     )
 }
