@@ -8,12 +8,17 @@ const Dropzone = ({ onUpload }) => {
         onUpload(acceptedFiles);
     };
 
-    const { getRootProps, getInputProps } = useDropzone({ onDrop });
+    const { getRootProps, getInputProps } = useDropzone({ 
+        onDrop,
+        accept: {
+            'audio/*': ['.mp3', '.wav'],
+        }
+     });
 
     return (
-        <div className="p-20" {...getRootProps()}>
+        <div className="pt-20" {...getRootProps()}>
             <input {...getInputProps()} />
-            <p className="text-center"> Drag and drop files here, or click to select files.</p>
+            <p className="text-lg font-bold text-center"> Drag and drop files here, or click to select files.</p>
         </div>
     )
 }

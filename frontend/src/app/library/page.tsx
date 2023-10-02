@@ -5,16 +5,21 @@ export default async function Home() {
   const songs = await getSongs()
   return (
     <main className="px-30">
-      <h1 className="text-2xl text-left text-white font-semibold pt-10 px-20">Song Library</h1>
-      <div className="grid grid-cols-[50%,30%,10%] gap-4 pl-20 py-10 ml-5">
-        <div className="opacity-60">Title</div>
-        <div className="opacity-60">Artist</div>
-        <div></div>
-
-        {songs.map((song: SongProps, key: any) => (
-          <SongRow song={song} key={key}/>
-        ))}
-      </div>
+      <h1 className="text-2xl text-white font-semibold py-10 px-20">Song Library</h1>
+      <table className="max-w-7xl ml-20 py-10">
+        <thead className='my-3'>
+          <tr className='border-b border-b-raisin-200' >
+            <th className="w-1/6 opacity-60 text-left pl-3">Title</th>
+            <th className="w-1/6 opacity-60 text-left">Artist</th>
+            <th className="w-1/12 opacity-60 text-right pr-3">Options</th>
+          </tr>
+        </thead>
+        <tbody>
+          {songs.map((song: SongProps, key: any) => (
+            <SongRow song={song} key={key} />
+          ))}
+        </tbody>
+      </table>
     </main>
   )
 }
