@@ -1,4 +1,4 @@
-name: Publish
+name: Deploy
 on:
   push:
     branches:
@@ -50,6 +50,30 @@ jobs:
           file: ${{ matrix.dockerfile }}
           push: true
           tags: ${{ matrix.tag }}
+
+
+  gke-deploy:
+    needs: docker-release
+    name: Deploy to GKE
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+      - id: checkout
+        name: Checkout
+        uses: actions/checkout@v3
+
+      - id: auth
+        name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          token_format: access_token
+          workload_identity_provider: projects/${{ secrets.google_project_number }}/locations/global/workloadIdentityPools/github/providers/github
+          service_account: github@deft-crawler-400712.iam.gserviceaccount.com
+          access_token_lifetime: 300s
 
       - name: Get GKE Credentials
         uses: google-github-actions/get-gke-credentials@v1

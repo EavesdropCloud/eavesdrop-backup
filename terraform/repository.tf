@@ -52,3 +52,9 @@ resource "google_project_iam_binding" "admin-cluster-iam" {
   role    = "roles/container.developer"
   members = ["serviceAccount:${google_service_account.github.email}"]
 }
+
+resource "google_project_iam_binding" "cluster-repository-iam" {
+  project = data.google_project.project.project_id
+  role    = "roles/artifactregistry.reader"
+  members = ["serviceAccount:${module.gke.service_account}"]
+}
