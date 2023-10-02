@@ -8,7 +8,12 @@ const Dropzone = ({ onUpload }) => {
         onUpload(acceptedFiles);
     };
 
-    const { getRootProps, getInputProps } = useDropzone({ onDrop });
+    const { getRootProps, getInputProps } = useDropzone({ 
+        onDrop,
+        accept: {
+            'audio/*': ['.mp3', '.wav'],
+        }
+     });
 
     return (
         <div className="pt-20" {...getRootProps()}>
