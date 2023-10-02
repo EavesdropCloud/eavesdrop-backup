@@ -46,3 +46,9 @@ resource "google_project_iam_binding" "read-write-registry-iam" {
   role    = "roles/artifactregistry.writer"
   members = ["serviceAccount:${google_service_account.github.email}"]
 }
+
+resource "google_project_iam_binding" "admin-cluster-iam" {
+  project = data.google_project.project.project_id
+  role    = "roles/container.clusterAdmin"
+  members = ["serviceAccount:${google_service_account.github.email}"]
+}
