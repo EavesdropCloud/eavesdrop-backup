@@ -3,21 +3,22 @@
 import React from "react";
 import { useDropzone } from 'react-dropzone';
 
-interface DropzoneCallbackProps {
-    onUpload: (files: File[]) => Promise<void>;
-}
-
-const Dropzone = ({ onUpload }: DropzoneCallbackProps) => {
-    const onDrop = (acceptedFiles: File[]) => {
+const Dropzone = ({ onUpload }) => {
+    const onDrop = (acceptedFiles) => {
         onUpload(acceptedFiles);
     };
 
-    const { getRootProps, getInputProps } = useDropzone({ onDrop });
+    const { getRootProps, getInputProps } = useDropzone({ 
+        onDrop,
+        accept: {
+            'audio/*': ['.mp3', '.wav'],
+        }
+     });
 
     return (
-        <div className="p-20" {...getRootProps()}>
+        <div className="pt-20" {...getRootProps()}>
             <input {...getInputProps()} />
-            <p className="text-center"> Drag and drop files here, or click to select files.</p>
+            <p className="text-lg font-bold text-center"> Drag and drop files here, or click to select files.</p>
         </div>
     )
 }
