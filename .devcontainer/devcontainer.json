@@ -16,5 +16,5 @@
 			"enableNonRootDocker": "true",
 			"moby": "false"
 		}
-    }
+  }
 }
