@@ -3,8 +3,12 @@
 import React from "react";
 import { useDropzone } from 'react-dropzone';
 
-const Dropzone = ({ onUpload }) => {
-    const onDrop = (acceptedFiles) => {
+interface DropzoneCallbackProps {
+    onUpload: (files: File[]) => Promise<void>;
+}
+
+const Dropzone = ({ onUpload }: DropzoneCallbackProps) => {
+    const onDrop = (acceptedFiles: File[]) => {
         onUpload(acceptedFiles);
     };
 
