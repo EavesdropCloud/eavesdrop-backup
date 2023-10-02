@@ -6,12 +6,12 @@ export default async function Home() {
   return (
     <main className="px-30">
       <h1 className="text-2xl text-white font-semibold py-10 px-20">Song Library</h1>
-      <table className="table-fixed pl-20 ml-10 py-10">
-        <thead>
-          <tr>
-            <th className="w-1/6 opacity-60 text-left">Title</th>
+      <table className="max-w-7xl ml-20 py-10">
+        <thead className='my-3'>
+          <tr className='border-b border-b-raisin-200' >
+            <th className="w-1/6 opacity-60 text-left pl-3">Title</th>
             <th className="w-1/6 opacity-60 text-left">Artist</th>
-            <th className="w-1/12 opacity-60 text-left">Options</th>
+            <th className="w-1/12 opacity-60 text-right pr-3">Options</th>
           </tr>
         </thead>
         <tbody>

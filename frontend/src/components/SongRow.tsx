@@ -39,9 +39,9 @@ const SongRow = ({song}: SongRowProps, key: React.Key) => {
 
     return (
         <tr className="group transition duration-300 ease-in-out">
-            <td className="group-hover:bg-raisin-200 transition duration-300 ease-in-out p-3 text-left">{song.metadata.title}</td>
-            <td className="group-hover:bg-raisin-200 transition duration-300 ease-in-out p-3 text-left">{song.metadata.artist}</td>
-            <td className="group-hover:bg-raisin-200 transition duration-300 ease-in-out p-3 text-left">
+            <td className="group-hover:bg-raisin-200 group-hover:rounded transition duration-300 ease-in-out py-3 pl-3 text-left">{song.metadata.title}</td>
+            <td className="group-hover:bg-raisin-200 transition duration-300 ease-in-out py-3 text-left">{song.metadata.artist}</td>
+            <td className="group-hover:bg-raisin-200 group-hover:rounded transition duration-300 ease-in-out py-3 pr-3 text-right">
                 <button onClick={ handleDownload }>
                     <DownloadIcon className="w-6 h-6" />
                 </button>
