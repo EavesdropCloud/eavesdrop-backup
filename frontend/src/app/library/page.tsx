@@ -1,8 +1,21 @@
+'use client'
+
 import SongRow from '@/components/SongRow'
 import {  SongProps } from '@/types'
+import { useState } from 'react';
 
-export default async function Home() {
-  const songs = await getSongs()
+
+export default function Home() {
+  const [songs, setSongs] = useState([]);
+
+  fetch("/api/songs", {cache: 'no-store'}).then((res => {
+    res.json().then(value => {
+      setSongs(value);
+    })
+  })).catch(error => {
+    console.error(error);
+  });
+
   return (
     <main className="px-30">
       <h1 className="text-2xl text-white font-semibold py-10 px-20">Song Library</h1>
@@ -22,14 +35,4 @@ export default async function Home() {
       </table>
     </main>
   )
-}
-
-async function getSongs() {
-  const res = await fetch(process.env.BACKEND_API_BASE + "/songs", {cache: 'no-store'})
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch songs')
-  }
-
-  return res.json()
 }
