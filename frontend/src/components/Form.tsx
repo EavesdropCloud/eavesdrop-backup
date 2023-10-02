@@ -1,6 +1,7 @@
 'use client'
 
 import React from "react";
+import Link from 'next/link'
 import { FormEvent } from "react";
 
 const Form = ({ song }) => {
@@ -39,6 +40,8 @@ const Form = ({ song }) => {
                     <div className="pl-10">
                         <button className="px-5 py-2 rounded-full opacity-80 transition duration-300 ease-in-out bg-transparent hover:opacity-100 hover:bg-pinkman"
                                 type="submit">Submit</button>
+                        <button className="px-5 py-2 ml-3 rounded-full opacity-80 transition duration-300 ease-in-out bg-transparent hover:opacity-100 
+                                hover:bg-pinkman"><Link href="/library">Cancel</Link></button>
                     </div>
                 </div>
             </form>
