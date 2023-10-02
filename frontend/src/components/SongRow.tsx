@@ -27,7 +27,7 @@ const SongRow = ({song}: SongRowProps, key: React.Key) => {
             method: "DELETE"
         })
         if (typeof window !== 'undefined') {
-            window.location.href = '/';
+            window.location.href = '/library';
         }
     }
 
