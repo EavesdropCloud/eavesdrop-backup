@@ -31,7 +31,7 @@ jobs:
         uses: google-github-actions/auth@v0
         with:
           token_format: access_token
-          workload_identity_provider: github
+          workload_identity_provider: projects/deft-crawler-400712/locations/global/workloadIdentityPools/github/providers/github
           service_account: github@deft-crawler-400712.iam.gserviceaccount.com
           access_token_lifetime: 300s
 
