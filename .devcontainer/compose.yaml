@@ -1,0 +1,55 @@
+services:
+  eavesdrop:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ../:/workspace/eavesdrop
+      - /workspace/eavesdrop/node_modules
+    ports:
+      - 3030:3000
+      - 5050:5000
+    networks:
+      - internal
+    depends_on:
+      - mongo
+    command: /bin/bash -c "while sleep 1000; do :; done" #keep container alive
+    environment:
+      # use polling for file changes
+      - CHOKIDAR_USEPOLLING=1 #nodemon
+      - NEXT_WEBPACK_USEPOLLING=1 #next dev
+      
+      - DB_URL=mongodb://devuser:devpassword@eavesdrop_devcontainer-mongo-1:27017/
+  
+  mongo:
+    image: mongo:latest
+    volumes:
+      - mongodb-data:/data/db
+      - ../db/mongo-init-scripts:/docker-entrypoint-initdb.d
+    networks:
+      - internal
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: devuser
+      MONGO_INITDB_ROOT_PASSWORD: devpassword
+
+  mongo-express:
+    image: mongo-express:latest
+    restart: always
+    ports:
+      - 8081:8081
+    networks:
+      - internal
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: devuser
+      ME_CONFIG_MONGODB_ADMINPASSWORD: devpassword
+      ME_CONFIG_MONGODB_URL: mongodb://devuser:devpassword@eavesdrop-mongo-1:27017/
+    depends_on:
+      - mongo
+
+networks:
+  internal:
+    driver: bridge
+
+volumes:
+  mongodb-data:
+  backend-uploads:
