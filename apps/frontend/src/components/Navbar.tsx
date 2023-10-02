@@ -19,8 +19,8 @@ export default function Navbar() {
           <Link className='focus:border-b-pinkman' href="/">Eavesdrop</Link>
         </div>
         <div className="md:flex md:items-center">
-          {links.map(link => (
-            <Link href={link.href} className="text-white py-2 px-4 mx-5 opacity-50 transition duration-300 ease-in-out 
+          {links.map((link, index) => (
+            <Link key={index} href={link.href} className="text-white py-2 px-4 mx-5 opacity-50 transition duration-300 ease-in-out 
               bg-transparent hover:opacity-100 focus:opacity-100 focus:border-b focus:border-b-pinkman">{link.label}</Link>
           ))}
         </div>
