@@ -21,7 +21,7 @@ export default function Navbar() {
         <div className="md:flex md:items-center">
           {links.map(link => (
             <Link href={link.href} className="text-white py-2 px-4 mx-5 opacity-50 transition duration-300 ease-in-out 
-              bg-transparent hover:opacity-100 focus:opacity-100 focus:border-b focus:border-b-wisteria">{link.label}</Link>
+              bg-transparent hover:opacity-100 focus:opacity-100 focus:border-b focus:border-b-wisteria-300">{link.label}</Link>
           ))}
         </div>
       </div>
