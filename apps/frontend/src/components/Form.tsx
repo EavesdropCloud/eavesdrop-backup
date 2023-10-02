@@ -4,7 +4,13 @@ import React from "react";
 import Link from 'next/link'
 import { FormEvent } from "react";
 
-const Form = ({ song }) => {
+import { SongProps } from "../types";
+
+interface SongFormProps {
+    song: SongProps
+}
+
+const Form = ({ song }: SongFormProps) => {
     const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
@@ -30,11 +36,11 @@ const Form = ({ song }) => {
             <form className="" onSubmit={onSubmit}>
                 <div className="flex flex-col">
                     <div className="my-5 pl-10">
-                        <label className="px-2 py-1 block text-sm opacity-50 font-semibold" for="song-title">Title</label>
+                        <label className="px-2 py-1 block text-sm opacity-50 font-semibold" htmlFor="song-title">Title</label>
                         <input className="w-1/2 p-2 bg-raisin-300 rounded" type="text" name="title" id="song-title"defaultValue={song.metadata.title} required/>
                     </div>
                     <div className="mb-5 pl-10">
-                        <label className="px-2 py-1 block text-sm opacity-50 font-semibold" for="artist-name">Artist</label>
+                        <label className="px-2 py-1 block text-sm opacity-50 font-semibold" htmlFor="artist-name">Artist</label>
                         <input className="w-1/2 p-2 bg-raisin-300 rounded" type="text" name="artist" id="artist-name" defaultValue={song.metadata.artist} required/>
                     </div>
                     <div className="pl-10">
