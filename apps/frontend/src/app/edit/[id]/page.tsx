@@ -7,7 +7,7 @@ import { json } from "stream/consumers";
 
 
 const getSong = async (id: string) => {
-    const res = await fetch(api_server + "api/songs/" + id, {cache: 'no-store'})
+    const res = await fetch(api_server + "/api/songs/" + id, {cache: 'no-store'})
     return res.json();
 }
 

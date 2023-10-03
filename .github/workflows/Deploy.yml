@@ -33,9 +33,7 @@ jobs:
 
       - name: Create frontend env
         run: |-
-          touch ./apps/frontend/.env.production
-          echo BACKEND_API_BASE=${{ secrets.FRONTEND_BACKEND_API_BASE }} >> ./apps/frontend/.env.production
-          echo WEBSERVER_URL=${{ secrets.FRONTEND_WEBSERVER_URL }} >> ./apps/frontend/.env.production
+          echo BACKEND_API_BASE=${{ secrets.FRONTEND_BACKEND_API_BASE }} > ./apps/frontend/.env.production
 
 
       - id: auth
