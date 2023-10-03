@@ -31,3 +31,5 @@ spec:
           env:
             - name: BACKEND_API_BASE
               value: "http://backend-service:5000"
+            - name: NEXT_PUBLIC_WEBSERVER_URL
+              value: "http://www.eavesdrop.cloud"
