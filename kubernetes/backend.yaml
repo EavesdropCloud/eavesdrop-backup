@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
         - name: backend-app
-          image: us-west1-docker.pkg.dev/deft-crawler-400712/eavesdrop-docker-repository/backend:latest
+          image: REGISTRY/PROJECT_ID/REPOSITORY_NAME/backend:TAG
           env:
             - name: DB_URL
               valueFrom:

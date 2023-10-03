@@ -27,4 +27,4 @@ spec:
     spec:
       containers:
         - name: frontend-app
-          image: us-west1-docker.pkg.dev/deft-crawler-400712/eavesdrop-docker-repository/frontend:latest
+          image: REGISTRY/PROJECT_ID/REPOSITORY_NAME/frontend:TAG
