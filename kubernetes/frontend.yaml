@@ -28,6 +28,3 @@ spec:
       containers:
         - name: frontend-app
           image: us-west1-docker.pkg.dev/deft-crawler-400712/eavesdrop-docker-repository/frontend:latest
-          env:
-            - name: BACKEND_API_BASE
-              value: http://backend-service:5000/api/

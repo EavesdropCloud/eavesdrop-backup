@@ -4,8 +4,13 @@ on:
     branches:
         - main
 
+env:
+  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
+  REGISTRY: us-west1-docker.pkg.dev
+  REPOSITORY_NAME: eavesdrop-docker-repository
+
 jobs:
-  docker-release:
+  setup-build-publish-deploy:
     name: Tagged Docker release to Google Artifact Registry
     runs-on: ubuntu-latest
     strategy:
@@ -13,9 +18,9 @@ jobs:
       matrix:
         include:
           - dockerfile: ./apps/frontend/Dockerfile
-            tag: us-west1-docker.pkg.dev/deft-crawler-400712/eavesdrop-docker-repository/frontend:latest
+            iamge-name: frontend
           - dockerfile: ./apps/backend/Dockerfile
-            tag: us-west1-docker.pkg.dev/deft-crawler-400712/eavesdrop-docker-repository/backend:latest
+            iamge-name: backend
 
     permissions:
       contents: 'read'
@@ -26,19 +31,26 @@ jobs:
         name: Checkout
         uses: actions/checkout@v3
 
+      - name: Create frontend env
+        run: |-
+          touch ./apps/frontend/.env.production
+          echo BACKEND_API_BASE=${{ secrets.FRONTEND_BACKEND_API_BASE }} >> ./apps/frontend/.env.production
+          echo WEBSERVER_URL=${{ secrets.FRONTEND_WEBSERVER_URL }} >> ./apps/frontend/.env.production
+
+
       - id: auth
         name: Authenticate with Google Cloud
         uses: google-github-actions/auth@v1
         with:
           token_format: access_token
           workload_identity_provider: projects/${{ secrets.google_project_number }}/locations/global/workloadIdentityPools/github/providers/github
-          service_account: github@deft-crawler-400712.iam.gserviceaccount.com
+          service_account: github@${{ env.PROJECT_ID }}.iam.gserviceaccount.com
           access_token_lifetime: 300s
 
       - name: Login to Artifact Registry
         uses: docker/login-action@v1
         with:
-          registry: us-west1-docker.pkg.dev
+          registry: ${{ env.REGISTRY }}
           username: oauth2accesstoken
           password: ${{ steps.auth.outputs.access_token }}
 
@@ -49,8 +61,9 @@ jobs:
           context: .
           file: ${{ matrix.dockerfile }}
           push: true
-          tags: ${{ matrix.tag }}
-
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.PROJECT_ID }}/${{ env.REPOSITORY_NAME}}/${{ matrix.image-name }}:${{ github.sha }}
+            ${{ env.REGISTRY }}/${{ env.PROJECT_ID }}/${{ env.REPOSITORY_NAME}}/${{ matrix.image-name }}:latest
 
   gke-deploy:
     needs: docker-release
@@ -81,6 +94,16 @@ jobs:
           cluster_name: ${{ secrets.GKE_CLUSTER_NAME }}
           location: ${{ secrets.GKE_CLUSTER_ZONE }}
 
-      - name: Deploy on GKE
+        # Set up kustomize
+      - name: Set up Kustomize
+        working-directory: ./kubernetes
         run: |-
-          kubectl apply -f ./kubernetes
+          curl -sfLo kustomize https://github.com/kubernetes-sigs/kustomize/releases/download/v3.1.0/kustomize_3.1.0_linux_amd64
+          chmod u+x ./kustomize
+
+      - name: Deploy on GKE
+        working-directory: ./kubernetes
+        run: |-
+          ./kustomize edit set image REGISTRY/PROJECT_ID/REPOSITORY_NAME/FRONTEND:TAG=$REGISTRY/$PROJECT_ID/$REPOSITORY_NAME/FRONTEND:$GITHUB_SHA
+          ./kustomize edit set image REGISTRY/PROJECT_ID/REPOSITORY_NAME/BACKEND:TAG=$REGISTRY/$PROJECT_ID/$REPOSITORY_NAME/BACKEND:$GITHUB_SHA
+          ./kustomize build . | kubectl apply -f -
