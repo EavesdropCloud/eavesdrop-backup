@@ -1,13 +1,12 @@
 # Eavesdrop Cloud
 
-Eavesdrop is a web application developed with DJs in mind - store your music files and access them from anywhere.* \
+Eavesdrop is a web application developed with DJs in mind - store your music files and access them from anywhere. \
 There are four containers which will be deployed upon build - frontend, backend, database, and MongoDB. \
 The frontend is developed using React and Next.js in Typescript. Users can upload their files, view them, and download them. \
 The backend is developed using Express. It handles the files, REST API calls, and allows for CRUD operations.  \
 The database container uses MongoDB to store and manage the user's files. \
 The Mongo Express container allows administrative access to the database server on http://localhost:8081/.
 
-**cloud based storage not implemented yet* 
 
 ## Getting started
 
