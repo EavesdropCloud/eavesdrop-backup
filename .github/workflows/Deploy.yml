@@ -18,9 +18,9 @@ jobs:
       matrix:
         include:
           - dockerfile: ./apps/frontend/Dockerfile
-            iamge-name: frontend
+            image-name: frontend
           - dockerfile: ./apps/backend/Dockerfile
-            iamge-name: backend
+            image-name: backend
 
     permissions:
       contents: 'read'
@@ -104,6 +104,6 @@ jobs:
       - name: Deploy on GKE
         working-directory: ./kubernetes
         run: |-
-          ./kustomize edit set image REGISTRY/PROJECT_ID/REPOSITORY_NAME/FRONTEND:TAG=$REGISTRY/$PROJECT_ID/$REPOSITORY_NAME/FRONTEND:$GITHUB_SHA
-          ./kustomize edit set image REGISTRY/PROJECT_ID/REPOSITORY_NAME/BACKEND:TAG=$REGISTRY/$PROJECT_ID/$REPOSITORY_NAME/BACKEND:$GITHUB_SHA
+          ./kustomize edit set image REGISTRY/PROJECT_ID/REPOSITORY_NAME/frontend:TAG=$REGISTRY/$PROJECT_ID/$REPOSITORY_NAME/frontend:$GITHUB_SHA
+          ./kustomize edit set image REGISTRY/PROJECT_ID/REPOSITORY_NAME/backend:TAG=$REGISTRY/$PROJECT_ID/$REPOSITORY_NAME/backend:$GITHUB_SHA
           ./kustomize build . | kubectl apply -f -
