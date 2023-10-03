@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { FormEvent } from "react";
 
 import { SongProps } from "../types";
+import { api_proxy } from "@/config";
 
 interface SongFormProps {
     song: SongProps
@@ -15,7 +16,7 @@ const Form = ({ song }: SongFormProps) => {
         event.preventDefault();
 
         const formData = new FormData(event.currentTarget);
-        const res = await fetch("/api/songs/" + song._id, {
+        const res = await fetch(api_proxy + "/api/songs/" + song._id, {
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json"
