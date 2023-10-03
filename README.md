@@ -10,6 +10,12 @@ The Mongo Express container allows administrative access to the database server 
 
 ## Getting started
 
+### Dependencies
+Visual Studio Code
+- including remote developer extension pack
+
+Docker daemon for your platform
+
 ### 1. Clone the repo
 ```
 git clone https://github.com/EavesdropCloud/eavesdrop.git && \
@@ -21,34 +27,45 @@ git clone git@github.com:EavesdropCloud/eavesdrop.git && \
 cd eavesdrop
 ```
 
-### 2. Move test data
-Copy the test data to a new folder at the root of the project named backend-uploads
+### 2. Open dev container
 
 ```
-mkdir backend-uploads && \
-cp backend-test-data/* backend-uploads
+code .
 ```
 
-### 3. Create frontend env file
+When prompted, select Reopen in Container.
 
-Create a .env.local file within the frontend directory. An example .env.local file is provided:
+Alternatively, using the command pallete: Dev Containers: Rebuild and Reopen in Container
+
+### 3. Start the development server
+
+In container bash run:
 ```
-cp frontend/.env.local.example frontend/.env.local
+turbo dev
 ```
 
-### 4. Start the development containers
+### 4. Visit the web application
+
+Navigate to http://localhost:3030/ to view the frontend application.
+
+### 5. Test build
+
+Ensure app_network is present:
 ```
-docker compose up -d --build
+docker network create app-network
 ```
 
-### 5. Visit the web application
+From /workspace/eavesdrop:
+```
+docker compose build
+```
 
-Navigate to http://localhost:3000/ to view the frontend application.
+### 6. All ok?
 
-### 6. (Recommended) VS Code Configuration
+Merge any changes into main for automatic deployment.
 
-Install the remote development extension pack to edit source code using container environment and dependencies.
+Navigate to www.eavesdrop.cloud to view live application.
 
 ## Development
 
-Source code is mounted at /app within the containers.
+Source code is mounted at /workspace/eavesdrop within the dev container.
