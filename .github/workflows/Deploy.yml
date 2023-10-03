@@ -33,7 +33,8 @@ jobs:
 
       - name: Create frontend env
         run: |-
-          echo NEXT_PUBLIC_WEBSERVER_URL=${{ secrets.WEBSERVER_URL }} > ./apps/frontend/.env.production
+          echo NEXT_PUBLIC_WEBSERVER_URL=${{ secrets.FRONTEND_WEBSERVER_URL }} > ./apps/frontend/.env.production
+          echo BACKEND_API_BASE=${{ secrets.FRONTEND_BACKEND_API_BASE }} >> ./apps/frontend/.env.production
 
 
       - id: auth
