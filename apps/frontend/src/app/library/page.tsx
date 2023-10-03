@@ -3,12 +3,13 @@
 import SongRow from '@/components/SongRow'
 import {  SongProps } from '@/types'
 import { useState } from 'react';
+import { api_proxy } from '@/config';
 
 
 export default function Home() {
   const [songs, setSongs] = useState([]);
 
-  fetch("/api/songs", {cache: 'no-store'}).then((res => {
+  fetch(api_proxy + "/api/songs/", {cache: 'no-store'}).then((res => {
     res.json().then(value => {
       setSongs(value);
     })

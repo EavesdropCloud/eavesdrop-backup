@@ -1,6 +1,7 @@
 'use client'
 
 import Dropzone from '@/components/Dropzone'
+import { api_proxy } from '@/config';
 import { useState } from 'react'
 
   
@@ -14,7 +15,7 @@ const Upload = () => {
       setMessage(`Uploading files...`);
       try {
         await new Promise(resolve => setTimeout(resolve, 1000));
-        const res = await fetch('/api/files/upload', {
+        const res = await fetch(api_proxy + '/api/files/upload', {
           method: 'POST',
           body: formData
         }).then(res => {

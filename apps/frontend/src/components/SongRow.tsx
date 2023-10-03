@@ -7,6 +7,7 @@ import Link from "next/link";
 import DownloadIcon from "./icons/DownloadIcon";
 import EditIcon from "./icons/EditIcon";
 import DeleteIcon from "./icons/DeleteIcon";
+import { api_proxy } from "@/config";
 
 interface SongRowProps {
     song: SongProps;
@@ -18,12 +19,12 @@ const SongRow = ({song}: SongRowProps, key: React.Key) => {
 
     const handleDownload = async () => {
         if (typeof window !== 'undefined') {
-            window.location.href = '/api/files/download/' + song._id;
+            window.location.href = api_proxy + '/api/files/download/' + song._id;
         }
     }
 
     const handleSubmit = async () => {
-        const res = await fetch("/api/files/" + song._id, {
+        const res = await fetch(api_proxy + "/api/files/" + song._id, {
             method: "DELETE"
         })
         if (typeof window !== 'undefined') {

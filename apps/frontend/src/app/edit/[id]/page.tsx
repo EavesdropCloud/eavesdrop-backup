@@ -1,12 +1,13 @@
 import React, { FormEvent } from "react";
 
 import { SongProps } from "@/types";
+import { api_server } from "@/config";
 import Form from "@/components/Form";
 import { json } from "stream/consumers";
 
 
 const getSong = async (id: string) => {
-    const res = await fetch(process.env.BACKEND_API_BASE + "songs/" + id, {cache: 'no-store'})
+    const res = await fetch(api_server + "api/songs/" + id, {cache: 'no-store'})
     return res.json();
 }
 
