@@ -28,3 +28,8 @@ spec:
       containers:
         - name: frontend-app
           image: REGISTRY/PROJECT_ID/REPOSITORY_NAME/frontend:TAG
+          env:
+            - name: BACKEND_API_BASE
+              value: "http://backend-service:5000"
+            - name: WEBSERVER_URL
+              value: "http://www.eavesdrop.cloud"
