@@ -7,6 +7,8 @@ The backend is developed using Express. It handles the files, REST API calls, an
 The database container uses MongoDB to store and manage the user's files. \
 The Mongo Express container allows administrative access to the database server on http://localhost:8081/.
 
+The website can we found at www.eavesdrop.cloud
+
 
 ## Getting started
 
